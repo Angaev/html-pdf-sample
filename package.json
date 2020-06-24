@@ -1,0 +1,7 @@
+{
+  "name": "html-pdf-sample",
+  "author": "Angaev",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}
