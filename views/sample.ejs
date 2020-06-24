@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Privacy</title>
+
+    <style type="text/css">
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        center,
+        dl, dt, dd,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .page h1, h2, h3 {
+            font-weight: bold;
+        }
+
+        .page h1 {
+            font-size: 12pt;
+        }
+
+        .page h2 {
+            font-size: 10pt;
+            font-style: oblique;
+            text-decoration: underline;
+            padding-bottom: 5px;
+        }
+
+        .page .outside-list {
+            list-style-position: outside;
+        }
+
+        .page .inside-list {
+            list-style-position: inside;
+        }
+
+        .page ol, .page ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .page li {
+            text-align: justify;
+        }
+
+        .page li > ul {
+            list-style-type: disc;
+        }
+
+        .page ol.number {
+            list-style-type: none;
+            counter-reset:  item;
+        }
+        .page ol.number li:before {
+            content: counter(item) ') ';
+            counter-increment: item;
+        }
+
+        .page ol.char {
+            list-style-type: none;
+            counter-reset:  item;
+        }
+        .page ol.char li:before {
+            content: counter(item, lower-alpha) ') ';
+            counter-increment: item;
+        }
+
+        .page {
+            font-size: 6pt;
+            font-family: Calibri;
+            position: relative;
+            width: 100%;
+            height: 297mm;
+            padding: 10mm 5mm 0;
+            page-break-after: always;
+            display: block;
+            overflow: hidden;
+        }
+
+        .page .text-block {
+            position: relative;
+            width: 100%;
+            padding: 0 20px 10px;
+        }
+
+        .page .text-center {
+            text-align: center;
+        }
+
+        .page .p0 {
+            padding: 0;
+        }
+
+        .page .row {
+            position: relative;
+        }
+
+        .page .col-50 {
+            float: left;
+            display: inline-block;
+            width: 50%;
+            padding: 0 5px;
+        }
+
+        .page .clearfix:after {
+            clear: both;
+        }
+
+        .page .clearfix:after, .clearfix:before {
+            display: table;
+            content: " ";
+        }
+
+        .page .gray {
+            color: #b2b2b2;
+        }
+
+        .page .sign{
+            position: relative;
+            display: inline-block;
+            padding: 10px 0 0 80px;
+            font-size: 10px;
+        }
+
+        .page .logo-container {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 80px;
+            color: #ed2127;
+            font-size: 10px;
+        }
+
+        .page .logo-container > img{
+            width: 100%;
+        }
+
+        .page .copyrights .logo img{
+            width: 200px;
+            display: inline-block;
+        }
+
+        .page .copyrights .mobisat-logo{
+            position: relative;
+            bottom: -4px;
+            display: inline-block;
+            width: 50px;
+            vertical-align: bottom;
+        }
+
+        .page .mobisat-logo-head {
+            position: relative;
+            bottom: -4px;
+            display: inline-block;
+            width: 70px;
+            vertical-align: bottom;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page">
+    <div class="logo-container text-center">
+        <img src="<%= images.brandLogoUrl %>"/>
+        <% if (copyTitle) { %>
+            <span><%= copyTitle %></span>
+        <% } %>
+    </div>
+
+    <img src="<%= images.mobisatLogoImage %>" class="mobisat-logo-head"/>
+    <div>
+        <h1 class="text-center">INFORMATIVA SUL TRATTAMENTO DEI DATI PERSONALI</h1>
+        <h2 class="text-center">(Ai sensi dell’art. 13 del Regolamento UE n.2016/67)</h2>
+    </div>
+
+    <div class="text-block" style="clear: both">
+        <p>Il
+            sottoscritto: <%= certificate.clientFirstName || user.firstName %> <%= certificate.clientLastName || user.lastName %>
+            qui di seguito:
+            “cliente”,</p>
+        <p>proprietario/conduttore/locatore/utilizzatore della vettura con: </p>
+        <p>VIN (numero di telaio): <%= certificate.vin || device.vehicleVin %> </p>
+        <p>targa: <%= certificate.vehiclePlate || device.vehiclePlate %> </p>
+    </div>
+
+    <div class="text-block">
+        <p>premesso che:</p>
+        <ul class="outside-list">
+            <li>
+                sulla vettura è installato e funzionante il sistema satellitare Mobisat® <%= certificate.productModel %>
+                con n. IMEI: <%= certificate.productImei || device.imei %>, di seguito “dispositivo”;
+            </li>
+            <li>
+                il dispositivo effettua un servizio di trasmissione dei dati relativi ai i tragitti e altri dati
+                (km percorsi, diagnostica, ecc.). La trasmissione avviene a messo SIM CARD installata a bordo del
+                sistema satellitare la quale consente l’invio dei dati in internet (utilizzando il protocollo GPRS)
+                o per SMS utilizzando il protocollo GSM;
+            </li>
+            <li>
+                a trasmissione dei dati decorre contestualmente dall'alimentazione del dispositivo;
+            </li>
+            <li>
+                i dati personali del cliente e i dati relativi al veicolo vengono trattati da:
+                <ul class="outside-list">
+                    <li>
+                        <% if (isPrivateClient) { %>
+                            Installazione eseguita dal cliente
+                        <% } else { %>
+                            l’installatore del Sistema satellitare: <%= dealer.name %>, <%= dealer.address1 %>
+                            , <%= dealer.taxCode %>
+                        <% } %>
+                    </li>
+                    <li>
+                        <% if (brandAdmin && brandAdmin.brandAdminBrandName && brandAdmin.brandAdminBrandName.toLowerCase() === "kia") { %>
+                            Il distributore/fornitore del sistema satellitare: KIA Motors Italy, Via Gallarate 184,
+                            Milano, 20151 (MI); P. Iva: 07369940965
+                        <% } else { %>
+                            Il distributore/fornitore del sistema satellitare: Comepsa Ltd, Edelman House, 1238 High Road,
+                            London N20
+                            0LH, UK. - VAT N° GB 610.1181.07
+                        <% } %>
+                    </li>
+                    <li>Il fornitore dei servizi di localizzazione: Mobisat® SAGL, Via Tito Livio 24, 6830 Chiasso
+                        (Svizzera);
+                    </li>
+                </ul>
+            </li>
+            <li>
+                i dati inviati in internet dal sistema satellitare sono una proprietà del cliente e vengono trattati da:
+                Mobisat® SAGL, Via Tito Livio 24, 6830 Chiasso (Svizzera).
+            </li>
+        </ul>
+    </div>
+
+    <div class="copyrights text-center">
+        <% if (images.brandExtraLogoUrl) {%>
+            <div class="logo">
+                <img src="<%= images.brandExtraLogoUrl %>"/>
+            </div>
+        <% } %>
+        <div><% if (images.mobisatLogoUrl) {%><img src="<%= images.mobisatLogoUrl %>" class="mobisat-logo"/> © <% } else { %>Mobisat®<% } %> SAGL, Via Tito Livio 24, 6830 Chiasso (Svizzera)</div>
+    </div>
+</div>
+</body>
+</html>
